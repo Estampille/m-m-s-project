@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import Medium from "./Medium";
 
 class MyTravel extends React.Component {
@@ -14,6 +15,19 @@ class MyTravel extends React.Component {
       travelMode: this.props.match.params.travelMode,
       isWeatherClean: false,
     };
+  }
+
+  componentDidMount() {
+    axios
+      .get(
+        `https://graphhopper.com/api/1/route?point=51.131,12.414&point=48.224,3.867&vehicle=foot&key=0b8bd438-ed0a-4be0-bee3-6369799a0949`
+      )
+      .then((res) => res.data)
+      .then((data) => {
+        const Distance = data.paths[0].distance;
+        const Durée = data.paths[0].time;
+        console.log(Distance, Durée);
+      });
   }
 
   render() {
