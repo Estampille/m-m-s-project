@@ -1,9 +1,11 @@
-import HomePage from './components/HomePage';
+import HomePage from "./components/HomePage";
+import Form from "./components/Form";
 
 function App() {
   return (
     <div className="App">
-<HomePage />
+      <HomePage />
+      <Form />
     </div>
   );
 }
