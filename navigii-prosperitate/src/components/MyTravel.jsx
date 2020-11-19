@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import Medium from "./Medium";
 import Carte from "./Map";
 import axios from "axios";
@@ -19,6 +20,18 @@ class MyTravel extends React.Component {
       arrival: null,
     };
   }
+
+  getDistance() {
+    axios
+      .get(
+        `https://graphhopper.com/api/1/route?point=51.131,12.414&point=48.224,3.867&vehicle=foot&key=0b8bd438-ed0a-4be0-bee3-6369799a0949`
+      )
+      .then((res) => res.data)
+      .then((data) => {
+        const Distance = data.paths[0].distance;
+        const Durée = data.paths[0].time;
+        console.log(Distance, Durée);
+      });
 
   getGeocodeStart() {
     const { start } = this.state;
@@ -44,6 +57,7 @@ class MyTravel extends React.Component {
   componentDidMount() {
     this.getGeocodeStart();
     this.getGeocodeArrival();
+    this.getDistance();
   }
 
   render() {
