@@ -1,4 +1,5 @@
 import React from "react";
+import Medium from "./Medium";
 
 class MyTravel extends React.Component {
   constructor(props) {
@@ -7,9 +8,11 @@ class MyTravel extends React.Component {
       name: this.props.match.params.name,
       age: this.props.match.params.age,
       rank: this.props.match.params.rank,
-      region: this.props.match.params.region,
+      start: this.props.match.params.start,
+      arrive: this.props.match.params.arrive,
       departure: this.props.match.params.departure,
       travelMode: this.props.match.params.travelMode,
+      isWeatherClean: false,
     };
   }
 
@@ -17,8 +20,13 @@ class MyTravel extends React.Component {
     return (
       <div className="MyTravel">
         <p>THis is my travel</p>
-        <p>{this.state.name}</p>
-        <p>{this.state.age}</p>
+        <p>{this.state.start}</p>
+        <p>{this.state.arrive}</p>
+        <Medium
+          weatherStatus={this.state.isWeatherClean}
+          start={this.state.start}
+          arrive={this.state.arrive}
+        />
       </div>
     );
   }
