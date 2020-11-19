@@ -2,9 +2,26 @@ body {
   margin: 0;
 }
 
+/* heeader */
 .header {
-  background-color: grey;
+  background-image: url("https://db3pap006files.storage.live.com/y4mTwokJQHpuT2e-3qyqxhSuILSMRPgf5-gSUkrINNA4JOL9brA58Rczd-qa1hObRVfdvbx-sSYTqpK1wTKz5wSbk8TANYtlN31V5xFk6xs_6kpi0BNYkkIY6oxU0DkO5FYuZGL6xhzVkksLzDYhcLd8fzrIIoiZflg1AgG_6ioPjtnlwr3DslXUOjTIacNBrzN?width=660&height=382&cropmode=none");
+  background-origin: border-box;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 30%;
+  margin-top: 0;
 }
+
+.siteTitle {
+  margin-top: 0;
+  text-align: center;
+}
+
+.priere {
+  text-align: center;
+}
+
+/* avis utilisateur */
 
 .accroche {
   text-align: center;
