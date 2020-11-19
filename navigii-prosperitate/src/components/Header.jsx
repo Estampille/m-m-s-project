@@ -8,9 +8,9 @@ class Header extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Navigii Prosperitate</h1>
-        <h3>
+      <div className="header">
+        <h1 className="siteTitle">Navigii Prosperitate</h1>
+        <h3 className="priere">
           <em>Oratio Gilde pro itineris et navigii prosperitate</em>
         </h3>
       </div>
