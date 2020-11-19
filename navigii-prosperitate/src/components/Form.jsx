@@ -4,14 +4,15 @@ class Form extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: null,
-      age: null,
-      rank: "Peasant",
-      region: null,
-      departure: null,
-      travelMode: "Walk",
+      name: "",
+      age: "",
+      rank: "",
+      region: "",
+      departure: "",
+      travelMode: "",
     };
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleInputChange(event) {
@@ -24,9 +25,15 @@ class Form extends React.Component {
     });
   }
 
+  handleSubmit(event) {
+    const props = this.state;
+    console.log({ ...props });
+    event.preventDefault();
+  }
+
   render() {
     return (
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <label>
           Name:
           <input
@@ -83,6 +90,7 @@ class Form extends React.Component {
             <option value="Horse">Horse</option>
           </select>
         </label>
+        <input type="submit" value="Submit" />
       </form>
     );
   }
