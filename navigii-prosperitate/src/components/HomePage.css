@@ -1,0 +1,14 @@
+body {
+  margin: 0;
+}
+
+.header {
+  background-color: grey;
+}
+
+.accroche {
+  text-align: center;
+  margin-top: 5%;
+  margin-right: 5%;
+  margin-left: 5%;
+}
