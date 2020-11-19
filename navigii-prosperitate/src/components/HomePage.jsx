@@ -3,7 +3,6 @@ import Header from "./Header";
 import "./UserReview.css";
 import "./HomePage.css";
 import Footer from "./Footer";
-import Carte from "./Map";
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -17,7 +16,7 @@ class HomePage extends React.Component {
         <Header />
         <section>
           <p className="accroche">
-            Grace a notre planificateur de voyage ci dessous, rendez votre
+            Grace a notre planificateur de voyage ci-dessous, rendez votre
             trajet plus sûr !
           </p>
         </section>
@@ -33,6 +32,7 @@ class HomePage extends React.Component {
             bon fumet !
           </p>
         </div>
+
         <Footer />
       </div>
     );
