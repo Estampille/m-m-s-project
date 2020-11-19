@@ -1,5 +1,6 @@
 import React from "react";
 import Medium from "./Medium";
+import Carte from "./Map";
 
 class MyTravel extends React.Component {
   constructor(props) {
@@ -19,6 +20,10 @@ class MyTravel extends React.Component {
   render() {
     return (
       <div className="MyTravel">
+        <div style={{ position: "relative", height: "40vh", maxWidth: "100%" }}>
+          <Carte />
+        </div>
+
         <p>THis is my travel</p>
         <p>{this.state.start}</p>
         <p>{this.state.arrive}</p>
