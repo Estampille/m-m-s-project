@@ -2,7 +2,6 @@ import React from "react";
 import axios from "axios";
 import Medium from "./Medium";
 import Carte from "./Map";
-import axios from "axios";
 
 class MyTravel extends React.Component {
   constructor(props) {
@@ -32,6 +31,7 @@ class MyTravel extends React.Component {
         const Durée = data.paths[0].time;
         console.log(Distance, Durée);
       });
+  }
 
   getGeocodeStart() {
     const { start } = this.state;
