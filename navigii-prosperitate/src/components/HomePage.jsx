@@ -3,6 +3,7 @@ import Header from "./Header";
 import "./UserReview.css";
 import "./HomePage.css";
 import Footer from "./Footer";
+import Carte from "./Map";
 
 class HomePage extends React.Component {
   constructor(props) {
