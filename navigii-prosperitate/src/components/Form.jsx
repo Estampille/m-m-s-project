@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 class Form extends React.Component {
   constructor(props) {
@@ -8,7 +9,7 @@ class Form extends React.Component {
       age: "",
       rank: "",
       region: "",
-      departure: "",
+      departure: "20-10",
       travelMode: "",
     };
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -32,6 +33,7 @@ class Form extends React.Component {
   }
 
   render() {
+    const { name, age, rank, region, departure, travelMode } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
@@ -39,7 +41,7 @@ class Form extends React.Component {
           <input
             name="name"
             type="text"
-            value={this.state.name}
+            value={name}
             onChange={this.handleInputChange}
           />
         </label>
@@ -48,17 +50,13 @@ class Form extends React.Component {
           <input
             name="age"
             type="number"
-            value={this.state.age}
+            value={age}
             onChange={this.handleInputChange}
           />
         </label>
         <label>
           Rank:
-          <select
-            name="rank"
-            value={this.state.rank}
-            onChange={this.handleInputChange}
-          >
+          <select name="rank" value={rank} onChange={this.handleInputChange}>
             <option value="Priest">Priest</option>
             <option value="Peasant">Peasant</option>
             <option value="Traveler">Traveler</option>
@@ -69,7 +67,7 @@ class Form extends React.Component {
           Region of travel:
           <select
             name="region"
-            value={this.state.region}
+            value={region}
             onChange={this.handleInputChange}
           >
             <option value="Provence">Provence</option>
@@ -83,13 +81,18 @@ class Form extends React.Component {
           Travel by:
           <select
             name="travelMode"
-            value={this.state.travelMode}
+            value={travelMode}
             onChange={this.handleInputChange}
           >
             <option value="Walk">Walk</option>
             <option value="Horse">Horse</option>
           </select>
         </label>
+        <Link
+          to={`/my-travel/${name}/${age}/${rank}/${region}/${departure}/${travelMode}`}
+        >
+          Show me my travel
+        </Link>
         <input type="submit" value="Submit" />
       </form>
     );

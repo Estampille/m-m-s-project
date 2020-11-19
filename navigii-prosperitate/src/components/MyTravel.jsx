@@ -6,6 +6,10 @@ class MyTravel extends React.Component {
     this.state = {
       name: this.props.match.params.name,
       age: this.props.match.params.age,
+      rank: this.props.match.params.rank,
+      region: this.props.match.params.region,
+      departure: this.props.match.params.departure,
+      travelMode: this.props.match.params.travelMode,
     };
   }
 
