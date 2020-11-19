@@ -41,20 +41,24 @@ class MyTravel extends React.Component {
     });
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.getGeocodeStart();
     this.getGeocodeArrival();
   }
 
   render() {
+    const { startCity, arrival } = this.state;
     return (
       <div className="MyTravel">
-        <div style={{ position: "relative", height: "40vh", maxWidth: "100%" }}>
-          <Carte
-            departure={this.state.startCity}
-            arriver={this.state.arrival}
-          />
-        </div>
+        {startCity && arrival ? (
+          <div
+            style={{ position: "relative", height: "40vh", maxWidth: "100%" }}
+          >
+            <Carte departure={startCity} arriver={arrival} />
+          </div>
+        ) : (
+          <p> Loading </p>
+        )}
 
         <p>THis is my travel</p>
         <p>{this.state.start}</p>
