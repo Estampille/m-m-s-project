@@ -1,6 +1,7 @@
 import React from "react";
 import Medium from "./Medium";
 import Carte from "./Map";
+import axios from "axios";
 
 class MyTravel extends React.Component {
   constructor(props) {
@@ -14,14 +15,45 @@ class MyTravel extends React.Component {
       departure: this.props.match.params.departure,
       travelMode: this.props.match.params.travelMode,
       isWeatherClean: false,
+      startCity: null,
+      arrival: null,
     };
+  }
+
+  getGeocodeStart() {
+    const { start } = this.state;
+    const url = `https://api-adresse.data.gouv.fr/search/?q=${start}`;
+    axios.get(url).then((response) => {
+      console.log(response);
+      this.setState({
+        startCity: response.data.features[0].geometry.coordinates,
+      });
+    });
+  }
+
+  getGeocodeArrival() {
+    const { arrive } = this.state;
+    const url = `https://api-adresse.data.gouv.fr/search/?q=${arrive}`;
+    axios.get(url).then((response) => {
+      this.setState({
+        arrival: response.data.features[0].geometry.coordinates,
+      });
+    });
+  }
+
+  componentDidMount() {
+    this.getGeocodeStart();
+    this.getGeocodeArrival();
   }
 
   render() {
     return (
       <div className="MyTravel">
         <div style={{ position: "relative", height: "40vh", maxWidth: "100%" }}>
-          <Carte />
+          <Carte
+            departure={this.state.startCity}
+            arriver={this.state.arrival}
+          />
         </div>
 
         <p>THis is my travel</p>
