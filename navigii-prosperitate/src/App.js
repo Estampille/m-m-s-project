@@ -13,7 +13,7 @@ function App() {
             <Form />
           </Route>
           <Route
-            path="/my-travel/:name/:age/:rank/:region/:departure/:travelMode"
+            path="/my-travel/:name/:age/:rank/:start/:arrive/:departure/:travelMode"
             component={MyTravel}
           />
         </Switch>

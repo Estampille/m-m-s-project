@@ -8,7 +8,8 @@ class Form extends React.Component {
       name: "",
       age: "",
       rank: "",
-      region: "",
+      start: "",
+      arrive: "",
       departure: "20-10",
       travelMode: "",
     };
@@ -33,7 +34,15 @@ class Form extends React.Component {
   }
 
   render() {
-    const { name, age, rank, region, departure, travelMode } = this.state;
+    const {
+      name,
+      age,
+      rank,
+      start,
+      arrive,
+      departure,
+      travelMode,
+    } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
@@ -64,17 +73,22 @@ class Form extends React.Component {
           </select>
         </label>
         <label>
-          Region of travel:
-          <select
-            name="region"
-            value={region}
+          Start:
+          <input
+            name="start"
+            type="text"
+            value={start}
             onChange={this.handleInputChange}
-          >
-            <option value="Provence">Provence</option>
-            <option value="Bourgogne">Bourgogne</option>
-            <option value="Normandie">Normandie</option>
-            <option value="Alsace">Alsace</option>
-          </select>
+          />
+        </label>
+        <label>
+          Arrive:
+          <input
+            name="arrive"
+            type="text"
+            value={arrive}
+            onChange={this.handleInputChange}
+          />
         </label>
         <label>Date of travel</label>
         <label>
@@ -89,7 +103,7 @@ class Form extends React.Component {
           </select>
         </label>
         <Link
-          to={`/my-travel/${name}/${age}/${rank}/${region}/${departure}/${travelMode}`}
+          to={`/my-travel/${name}/${age}/${rank}/${start}/${arrive}/${departure}/${travelMode}`}
         >
           Show me my travel
         </Link>
