@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./HomePage.css";
 
 class Form extends React.Component {
   constructor(props) {
@@ -44,7 +45,7 @@ class Form extends React.Component {
       travelMode,
     } = this.state;
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form classname="form" onSubmit={this.handleSubmit}>
         <label>
           Name:
           <input

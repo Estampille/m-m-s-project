@@ -32,3 +32,15 @@ body {
   margin-right: 5%;
   margin-left: 5%;
 }
+
+/* form css  */
+
+.App > form:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.App > form:nth-child(2) > label {
+  text-align: center;
+}

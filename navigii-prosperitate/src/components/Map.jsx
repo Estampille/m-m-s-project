@@ -85,7 +85,7 @@ class Carte extends React.Component {
         className="map"
         center={[departure[1], departure[0]]}
         zoom={8}
-        scrollWheelZoom={false}
+        scrollWheelZoom={true}
       >
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

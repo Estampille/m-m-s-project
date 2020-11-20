@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import HomePage from "./components/HomePage";
 import Form from "./components/Form";
 import MyTravel from "./components/MyTravel";
+import "./components/HomePage.css";
 
 console.log(process.env.REACT_APP_GRAPHHOPPER_API_KEY);
 
