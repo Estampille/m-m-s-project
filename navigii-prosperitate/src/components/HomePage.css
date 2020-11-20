@@ -37,7 +37,7 @@ body {
   margin-top: 0;
 }
 .HomePage {
-  max-width: 1024px;
+  max-width: 100%;
   margin: 0 auto;
 }
 .siteTitle {
@@ -103,3 +103,6 @@ select {
 .App > form:nth-child(2) > label {
   text-align: center;
 } */
+
+@media (min-width: 768px) {
+}

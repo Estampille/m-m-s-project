@@ -13,7 +13,6 @@ function App() {
         <Switch>
           <Route exact path="/">
             <HomePage />
-            <Form />
           </Route>
           <Route
             path="/my-travel/:name/:age/:rank/:start/:arrive/:departure/:travelMode"
