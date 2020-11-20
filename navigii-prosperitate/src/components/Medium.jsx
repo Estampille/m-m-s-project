@@ -173,6 +173,28 @@ class Medium extends React.Component {
     }
   }
 
+  getPrice() {
+    const { rank } = this.props;
+    const { distance } = this.state;
+    if (rank === "Royal Member") {
+      return (
+        <p>{`My Lord, this will cost you ${
+          Math.round(distance / 100000) * 2
+        } gold`}</p>
+      );
+    } else if (rank === "Peasant") {
+      return (
+        <p>{`Poor man, this will cost you ${
+          Math.round(distance / 100000) * 0.5
+        } gold`}</p>
+      );
+    } else {
+      return (
+        <p>{`This will cost you ${Math.round(distance / 100000)} gold`}</p>
+      );
+    }
+  }
+
   render() {
     const { distance, time, startWeather, arriveWeather } = this.state;
     return (
@@ -183,6 +205,10 @@ class Medium extends React.Component {
         <div className="Weather">
           {startWeather ? this.weatherIndicatorStart() : <p>Weather</p>}
           {arriveWeather ? this.weatherIndicatorArrive() : <p>Weather</p>}
+        </div>
+        <div className="Devis">
+          {distance > 0 ? this.getPrice() : <p>Price</p>}
+          <button type="button">Accept this price</button>
         </div>
       </div>
     );

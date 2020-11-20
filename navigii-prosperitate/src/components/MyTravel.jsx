@@ -14,7 +14,6 @@ class MyTravel extends React.Component {
       arrive: this.props.match.params.arrive,
       departure: this.props.match.params.departure,
       travelMode: this.props.match.params.travelMode,
-      isWeatherClean: false,
       startCity: null,
       arrival: null,
     };
@@ -46,7 +45,7 @@ class MyTravel extends React.Component {
   }
 
   render() {
-    const { startCity, arrival } = this.state;
+    const { start, arrive, startCity, arrival, rank } = this.state;
     return (
       <div className="MyTravel">
         {startCity && arrival ? (
@@ -60,15 +59,15 @@ class MyTravel extends React.Component {
         )}
 
         <p>THis is my travel</p>
-        <p>{this.state.start}</p>
-        <p>{this.state.arrive}</p>
-        {this.state.startCity && this.state.arrival ? (
+        <p>{start}</p>
+        <p>{arrive}</p>
+        {startCity && arrival ? (
           <Medium
-            weatherStatus={this.state.isWeatherClean}
-            start={this.state.start}
-            arrive={this.state.arrive}
-            startCity={this.state.startCity}
-            arrival={this.state.arrival}
+            start={start}
+            arrive={arrive}
+            startCity={startCity}
+            arrival={arrival}
+            rank={rank}
           />
         ) : (
           <p>Loading</p>
