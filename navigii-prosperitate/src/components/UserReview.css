@@ -11,8 +11,3 @@
 .review {
   margin-left: 2%;
 }
-
-.form {
-  display: flex;
-  flex-direction: column;
-}
