@@ -24,7 +24,6 @@ class MyTravel extends React.Component {
     const { start } = this.state;
     const url = `https://api-adresse.data.gouv.fr/search/?q=${start}`;
     axios.get(url).then((response) => {
-      console.log(response);
       this.setState({
         startCity: response.data.features[0].geometry.coordinates,
       });
@@ -52,7 +51,7 @@ class MyTravel extends React.Component {
       <div className="MyTravel">
         {startCity && arrival ? (
           <div
-            style={{ position: "relative", height: "40vh", maxWidth: "100%" }}
+            style={{ position: "relative", height: "55vh", maxWidth: "100%" }}
           >
             <Carte departure={startCity} arriver={arrival} />
           </div>
