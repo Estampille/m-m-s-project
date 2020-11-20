@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: row;
   margin-top: 10%;
+  margin-bottom: 20%;
 }
 .userPic {
   border-radius: 50%;
@@ -9,4 +10,9 @@
 }
 .review {
   margin-left: 2%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
 }
