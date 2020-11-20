@@ -180,7 +180,6 @@ class Medium extends React.Component {
         <p>{`You have to cover ${(distance / 1000).toFixed(
           2
         )} KM and it will take you ${this.msToTime(time)}`}</p>
-        <p>This is a test</p>
         <div className="Weather">
           {startWeather ? this.weatherIndicatorStart() : <p>Weather</p>}
           {arriveWeather ? this.weatherIndicatorArrive() : <p>Weather</p>}

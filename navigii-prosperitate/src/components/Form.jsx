@@ -45,7 +45,7 @@ class Form extends React.Component {
       travelMode,
     } = this.state;
     return (
-      <form classname="form" onSubmit={this.handleSubmit}>
+      <form className="Form" onSubmit={this.handleSubmit}>
         <label>
           Name:
           <input
@@ -67,6 +67,7 @@ class Form extends React.Component {
         <label>
           Rank:
           <select name="rank" value={rank} onChange={this.handleInputChange}>
+            <option value="Select one">Select one</option>
             <option value="Priest">Priest</option>
             <option value="Peasant">Peasant</option>
             <option value="Traveler">Traveler</option>
@@ -91,7 +92,7 @@ class Form extends React.Component {
             onChange={this.handleInputChange}
           />
         </label>
-        <label>Date of travel</label>
+
         <label>
           Travel by:
           <select
@@ -99,16 +100,17 @@ class Form extends React.Component {
             value={travelMode}
             onChange={this.handleInputChange}
           >
+            <option value="Select one">Select one</option>
             <option value="Walk">Walk</option>
             <option value="Horse">Horse</option>
           </select>
         </label>
         <Link
+          className="Link"
           to={`/my-travel/${name}/${age}/${rank}/${start}/${arrive}/${departure}/${travelMode}`}
         >
-          Show me my travel
+          Guide me !
         </Link>
-        <input type="submit" value="Submit" />
       </form>
     );
   }

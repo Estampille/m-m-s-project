@@ -35,7 +35,35 @@ body {
 
 /* form css  */
 
-.App > form:nth-child(2) {
+.Form {
+  display: flex;
+  width: 80%;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  padding-left: 2em;
+}
+
+.Form label {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  margin: 2px;
+}
+
+.Link {
+  margin: 1em;
+}
+
+input {
+  width: 10em;
+}
+
+select {
+  width: 10em;
+}
+
+/* .App > form:nth-child(2) {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -43,4 +71,4 @@ body {
 
 .App > form:nth-child(2) > label {
   text-align: center;
-}
+} */
