@@ -33,7 +33,7 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  height: 30%;
+  height: 25vh;
   margin-top: 0;
 }
 .HomePage {
@@ -59,9 +59,10 @@ body {
 
 .accroche {
   text-align: center;
-  margin-top: 5%;
+  margin-top: 2%;
   margin-right: 5%;
   margin-left: 5%;
+  margin-bottom: 0;
 }
 
 /* form css  */
