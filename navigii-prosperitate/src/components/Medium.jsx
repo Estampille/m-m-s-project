@@ -98,13 +98,13 @@ class Medium extends React.Component {
   }
 
   weatherIndicatorStart() {
-    if (this.state.startWeather === "c" || "lc" || "hc") {
-      console.log("Test");
+    const { startWeather } = this.state;
+    if (startWeather === "c" || "lc" || "hc") {
       return (
         <div>
           <img
-            src={`https://www.metaweather.com/static/img/weather/png/64/${this.state.startWeather}.png`}
-            alt={`Weather at start is ${this.state.startWeather}`}
+            src={`https://www.metaweather.com/static/img/weather/png/64/${startWeather}.png`}
+            alt={`Weather at start is ${startWeather}`}
           />
           <p>Weather is fine at {this.props.start}</p>
         </div>
@@ -113,8 +113,8 @@ class Medium extends React.Component {
       return (
         <div>
           <img
-            src={`https://www.metaweather.com/static/img/weather/png/64/${this.state.startWeather}.png`}
-            alt={`Weather at start is ${this.state.startWeather}`}
+            src={`https://www.metaweather.com/static/img/weather/png/64/${startWeather}.png`}
+            alt={`Weather at start is ${startWeather}`}
           />
           <p>A bit rainy at {this.props.start}</p>
         </div>
@@ -123,8 +123,8 @@ class Medium extends React.Component {
       return (
         <div>
           <img
-            src={`https://www.metaweather.com/static/img/weather/png/64/${this.state.startWeather}.png`}
-            alt={`Weather at start is ${this.state.startWeather}`}
+            src={`https://www.metaweather.com/static/img/weather/png/64/${startWeather}.png`}
+            alt={`Weather at start is ${startWeather}`}
           />
           <p>
             Too dangerous to go out, you should postpone your departure from{" "}
@@ -136,23 +136,23 @@ class Medium extends React.Component {
   }
 
   weatherIndicatorArrive() {
-    if (this.state.arriveWeather === "c" || "lc" || "hc") {
-      console.log("Test");
+    const { arriveWeather } = this.state;
+    if (arriveWeather === "c" || "lc" || "hc") {
       return (
         <div>
           <img
-            src={`https://www.metaweather.com/static/img/weather/png/64/${this.state.arriveWeather}.png`}
-            alt={`Weather at arrive is ${this.state.arriveWeather}`}
+            src={`https://www.metaweather.com/static/img/weather/png/64/${arriveWeather}.png`}
+            alt={`Weather at arrive is ${arriveWeather}`}
           />
           <p>Weather is fine at {this.props.arrive}</p>
         </div>
       );
-    } else if (this.state.arriveWeather === "s" || "lr") {
+    } else if (arriveWeather === "s" || "lr") {
       return (
         <div>
           <img
-            src={`https://www.metaweather.com/static/img/weather/png/64/${this.state.arriveWeather}.png`}
-            alt={`Weather at arrive is ${this.state.arriveWeather}`}
+            src={`https://www.metaweather.com/static/img/weather/png/64/${arriveWeather}.png`}
+            alt={`Weather at arrive is ${arriveWeather}`}
           />
           <p>A bit rainy at {this.props.arrive}</p>
         </div>
@@ -161,8 +161,8 @@ class Medium extends React.Component {
       return (
         <div>
           <img
-            src={`https://www.metaweather.com/static/img/weather/png/64/${this.state.arriveWeather}.png`}
-            alt={`Weather at start is ${this.state.arriveWeather}`}
+            src={`https://www.metaweather.com/static/img/weather/png/64/${arriveWeather}.png`}
+            alt={`Weather at start is ${arriveWeather}`}
           />
           <p>
             Too dangerous to go out, you should postpone your trip to{" "}
@@ -174,23 +174,16 @@ class Medium extends React.Component {
   }
 
   render() {
+    const { distance, time, startWeather, arriveWeather } = this.state;
     return (
       <div className="Medium">
-        <p>{`You have to cover ${(this.state.distance / 1000).toFixed(
+        <p>{`You have to cover ${(distance / 1000).toFixed(
           2
-        )} KM and it will take you ${this.msToTime(this.state.time)}`}</p>
+        )} KM and it will take you ${this.msToTime(time)}`}</p>
         <p>This is a test</p>
         <div className="Weather">
-          {this.state.startWeather ? (
-            this.weatherIndicatorStart()
-          ) : (
-            <p>Weather</p>
-          )}
-          {this.state.arriveWeather ? (
-            this.weatherIndicatorArrive()
-          ) : (
-            <p>Weather</p>
-          )}
+          {startWeather ? this.weatherIndicatorStart() : <p>Weather</p>}
+          {arriveWeather ? this.weatherIndicatorArrive() : <p>Weather</p>}
         </div>
       </div>
     );
