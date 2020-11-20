@@ -6,9 +6,20 @@ body {
   font-size: 90%;
   background-color: #041940;
   color: #e6cda5;
+  background: #041940 url(medieval.jpg) repeat center center;
 }
+
+.root {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+
+  color: #e6cda5;
+}
+
 .App {
-  width: 95%;
+  width: 90%;
   margin: 40px auto;
   padding: 0;
   background: #e6cda5 url(parchemin.png) no-repeat center;

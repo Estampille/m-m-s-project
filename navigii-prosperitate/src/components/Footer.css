@@ -1,8 +1,15 @@
 .footer {
   position: absolute;
   bottom: 0;
+  background-image: url("https://db3pap006files.storage.live.com/y4mGIMHcPHrPq33kceHSziK33v3U6aQtqiVEJWfMU0s3lizA0FeyzJSgFQpRPhvrh15zF-ieuG3SqtpobXrFUxkQjjj7HJbqn_ae92YHQRlWsCIn6djx9h_bfeJAKvntiN-7FLcrV-3QU-VIumZXOveEPj5BFsq1WQC06zxy4PGZ2gjI_JPDrMk0-8S-j9AI7Rs?width=512&height=222&cropmode=none");
+  background-origin: border-box;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 17%;
+  margin-top: 0;
+
   display: flex;
   flex-direction: row;
   background-color: rgb(214, 221, 195);
-  width: 95%;
+  width: 90%;
 }
