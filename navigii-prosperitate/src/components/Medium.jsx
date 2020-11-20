@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import "./Medium.css";
 
 class Medium extends React.Component {
   constructor(props) {
@@ -20,14 +21,12 @@ class Medium extends React.Component {
     const yArrive = Math.round(arrival[1] * 1000) / 1000;
     axios
       .get(
-        `https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/search/?lattlong=${yStart},${xStart}`
+        `https://www.metaweather.com/api/location/search/?lattlong=${yStart},${xStart}`
       )
       .then((res) => res.data[0].woeid)
       .then((woeid) => {
         axios
-          .get(
-            `https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/${woeid}/`
-          )
+          .get(`https://www.metaweather.com/api/location/${woeid}/`)
           .then(
             (response) =>
               response.data.consolidated_weather[0].weather_state_abbr
@@ -40,14 +39,12 @@ class Medium extends React.Component {
       });
     axios
       .get(
-        `https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/search/?lattlong=${yArrive},${xArrive}`
+        `https://www.metaweather.com/api/location/search/?lattlong=${yArrive},${xArrive}`
       )
       .then((res) => res.data[0].woeid)
       .then((woeid) => {
         axios
-          .get(
-            `https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/${woeid}/`
-          )
+          .get(`https://www.metaweather.com/api/location/${woeid}/`)
           .then(
             (response) =>
               response.data.consolidated_weather[0].weather_state_abbr
@@ -101,7 +98,7 @@ class Medium extends React.Component {
     const { startWeather } = this.state;
     if (startWeather === "c" || "lc" || "hc") {
       return (
-        <div>
+        <div className="WeatherBox">
           <img
             src={`https://www.metaweather.com/static/img/weather/png/64/${startWeather}.png`}
             alt={`Weather at start is ${startWeather}`}
@@ -111,7 +108,7 @@ class Medium extends React.Component {
       );
     } else if (this.state.startWeather === "s" || "lr") {
       return (
-        <div>
+        <div className="WeatherBox">
           <img
             src={`https://www.metaweather.com/static/img/weather/png/64/${startWeather}.png`}
             alt={`Weather at start is ${startWeather}`}
@@ -121,7 +118,7 @@ class Medium extends React.Component {
       );
     } else {
       return (
-        <div>
+        <div className="WeatherBox">
           <img
             src={`https://www.metaweather.com/static/img/weather/png/64/${startWeather}.png`}
             alt={`Weather at start is ${startWeather}`}
@@ -139,7 +136,7 @@ class Medium extends React.Component {
     const { arriveWeather } = this.state;
     if (arriveWeather === "c" || "lc" || "hc") {
       return (
-        <div>
+        <div className="WeatherBox">
           <img
             src={`https://www.metaweather.com/static/img/weather/png/64/${arriveWeather}.png`}
             alt={`Weather at arrive is ${arriveWeather}`}
@@ -149,7 +146,7 @@ class Medium extends React.Component {
       );
     } else if (arriveWeather === "s" || "lr") {
       return (
-        <div>
+        <div className="WeatherBox">
           <img
             src={`https://www.metaweather.com/static/img/weather/png/64/${arriveWeather}.png`}
             alt={`Weather at arrive is ${arriveWeather}`}
@@ -159,7 +156,7 @@ class Medium extends React.Component {
       );
     } else {
       return (
-        <div>
+        <div className="WeatherBox">
           <img
             src={`https://www.metaweather.com/static/img/weather/png/64/${arriveWeather}.png`}
             alt={`Weather at start is ${arriveWeather}`}
@@ -173,16 +170,43 @@ class Medium extends React.Component {
     }
   }
 
+  getPrice() {
+    const { rank } = this.props;
+    const { distance } = this.state;
+    if (rank === "Royal Member") {
+      return (
+        <p>{`My Lord, this will cost you ${
+          Math.round(distance / 100000) * 2
+        } gold`}</p>
+      );
+    } else if (rank === "Peasant") {
+      return (
+        <p>{`Poor man, this will cost you ${
+          Math.round(distance / 100000) * 0.5
+        } gold`}</p>
+      );
+    } else {
+      return (
+        <p>{`This will cost you ${Math.round(distance / 100000)} gold`}</p>
+      );
+    }
+  }
+
   render() {
     const { distance, time, startWeather, arriveWeather } = this.state;
+    const { start, arrive } = this.props;
     return (
       <div className="Medium">
-        <p>{`You have to cover ${(distance / 1000).toFixed(
-          2
-        )} KM and it will take you ${this.msToTime(time)}`}</p>
+        <p>{`From ${start} to ${arrive} you will have to cover ${(
+          distance / 1000
+        ).toFixed(2)} KM and it will take you ${this.msToTime(time)}`}</p>
         <div className="Weather">
           {startWeather ? this.weatherIndicatorStart() : <p>Weather</p>}
           {arriveWeather ? this.weatherIndicatorArrive() : <p>Weather</p>}
+        </div>
+        <div className="Devis">
+          {distance > 0 ? this.getPrice() : <p>Price</p>}
+          <button type="button">Accept this price</button>
         </div>
       </div>
     );
