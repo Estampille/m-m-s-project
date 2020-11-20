@@ -3,6 +3,8 @@ import HomePage from "./components/HomePage";
 import Form from "./components/Form";
 import MyTravel from "./components/MyTravel";
 
+console.log(process.env.REACT_APP_GRAPHHOPPER_API_KEY);
+
 function App() {
   return (
     <div className="App">
