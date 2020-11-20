@@ -20,24 +20,10 @@ class MyTravel extends React.Component {
     };
   }
 
-  getDistance() {
-    axios
-      .get(
-        `https://graphhopper.com/api/1/route?point=51.131,12.414&point=48.224,3.867&vehicle=foot&key=0b8bd438-ed0a-4be0-bee3-6369799a0949`
-      )
-      .then((res) => res.data)
-      .then((data) => {
-        const Distance = data.paths[0].distance;
-        const Durée = data.paths[0].time;
-        console.log(Distance, Durée);
-      });
-  }
-
   getGeocodeStart() {
     const { start } = this.state;
     const url = `https://api-adresse.data.gouv.fr/search/?q=${start}`;
     axios.get(url).then((response) => {
-      console.log(response);
       this.setState({
         startCity: response.data.features[0].geometry.coordinates,
       });
@@ -57,7 +43,10 @@ class MyTravel extends React.Component {
   componentDidMount() {
     this.getGeocodeStart();
     this.getGeocodeArrival();
-    this.getDistance();
+    while (!this.state.startCity || !this.state.arrival) {
+      return false;
+    }
+    setTimeout(this.getDistance(), 3000);
   }
 
   render() {
@@ -73,11 +62,16 @@ class MyTravel extends React.Component {
         <p>THis is my travel</p>
         <p>{this.state.start}</p>
         <p>{this.state.arrive}</p>
-        <Medium
-          weatherStatus={this.state.isWeatherClean}
-          start={this.state.start}
-          arrive={this.state.arrive}
-        />
+        {this.state.startCity ? (
+          <Medium
+            weatherStatus={this.state.isWeatherClean}
+            start={this.state.start}
+            arrive={this.state.arrive}
+            startCity={this.state.startCity}
+          />
+        ) : (
+          <p>Loading</p>
+        )}
       </div>
     );
   }
