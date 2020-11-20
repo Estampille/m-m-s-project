@@ -57,10 +57,6 @@ class MyTravel extends React.Component {
         ) : (
           <p> Loading </p>
         )}
-
-        <p>THis is my travel</p>
-        <p>{start}</p>
-        <p>{arrive}</p>
         {startCity && arrival ? (
           <Medium
             start={start}
