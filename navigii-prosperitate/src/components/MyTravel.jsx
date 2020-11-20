@@ -43,10 +43,6 @@ class MyTravel extends React.Component {
   componentDidMount() {
     this.getGeocodeStart();
     this.getGeocodeArrival();
-    while (!this.state.startCity || !this.state.arrival) {
-      return false;
-    }
-    setTimeout(this.getDistance(), 3000);
   }
 
   render() {
@@ -62,12 +58,13 @@ class MyTravel extends React.Component {
         <p>THis is my travel</p>
         <p>{this.state.start}</p>
         <p>{this.state.arrive}</p>
-        {this.state.startCity ? (
+        {this.state.startCity && this.state.arrival ? (
           <Medium
             weatherStatus={this.state.isWeatherClean}
             start={this.state.start}
             arrive={this.state.arrive}
             startCity={this.state.startCity}
+            arrival={this.state.arrival}
           />
         ) : (
           <p>Loading</p>
