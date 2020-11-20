@@ -28,167 +28,204 @@ class Carte extends React.Component {
       auberge: null,
       crime: null,
     };
+    this.GetBlacksmith = this.GetBlacksmith.bind(this);
+    this.getMedic = this.getMedic.bind(this);
+    this.getPont = this.getPont.bind(this);
+    this.getAuberge = this.getAuberge.bind(this);
+    this.getCrime = this.getCrime.bind(this);
   }
 
   GetBlacksmith() {
-    Axios.get(
-      `https://api-adresse.data.gouv.fr/search/?q=forgeron&limit=2000`
-    ).then((response) => {
-      this.setState({ blackSmith: response.data.features });
-    });
+    if (this.state.blackSmith === null) {
+      Axios.get(
+        `https://api-adresse.data.gouv.fr/search/?q=forgeron&limit=2000`
+      ).then((response) => {
+        this.setState({ blackSmith: response.data.features });
+      });
+    } else {
+      this.setState({ blackSmith: null });
+    }
   }
 
   getMedic() {
-    Axios.get(
-      `https://api-adresse.data.gouv.fr/search/?q=medecin&limit=2000`
-    ).then((response) => {
-      this.setState({ medic: response.data.features });
-    });
+    if (this.state.medic === null) {
+      Axios.get(
+        `https://api-adresse.data.gouv.fr/search/?q=medecin&limit=2000`
+      ).then((response) => {
+        this.setState({ medic: response.data.features });
+      });
+    } else {
+      this.setState({ medic: null });
+    }
   }
+
   getPont() {
-    Axios.get(
-      `https://api-adresse.data.gouv.fr/search/?q=pont&limit=2000`
-    ).then((response) => {
-      this.setState({ pont: response.data.features });
-    });
+    if (this.state.pont === null) {
+      Axios.get(
+        `https://api-adresse.data.gouv.fr/search/?q=pont&limit=2000`
+      ).then((response) => {
+        this.setState({ pont: response.data.features });
+      });
+    } else {
+      this.setState({ pont: null });
+    }
   }
 
   getAuberge() {
-    Axios.get(
-      `https://api-adresse.data.gouv.fr/search/?q=hotel&limit=1000`
-    ).then((response) => {
-      this.setState({ auberge: response.data.features });
-    });
+    if (this.state.auberge === null) {
+      Axios.get(
+        `https://api-adresse.data.gouv.fr/search/?q=hotel&limit=1000`
+      ).then((response) => {
+        this.setState({ auberge: response.data.features });
+      });
+    } else {
+      this.setState({ auberge: null });
+    }
   }
 
   getCrime() {
-    Axios.get(
-      `https://api-adresse.data.gouv.fr/search/?q=foret&limit=2000`
-    ).then((response) => {
-      this.setState({ crime: response.data.features });
-    });
-  }
-
-  componentDidMount() {
-    this.GetBlacksmith();
-    this.getMedic();
-    this.getPont();
-    this.getAuberge();
-    this.getCrime();
+    if (this.state.crime === null) {
+      Axios.get(
+        `https://api-adresse.data.gouv.fr/search/?q=foret&limit=2000`
+      ).then((response) => {
+        this.setState({ crime: response.data.features });
+      });
+    } else {
+      this.setState({ crime: null });
+    }
   }
 
   render() {
     const { departure, arriver } = this.props;
     const { blackSmith, medic, pont, auberge, crime } = this.state;
     return (
-      <MapContainer
-        className="map"
-        center={[departure[1], departure[0]]}
-        zoom={8}
-        scrollWheelZoom={true}
-      >
-        <TileLayer
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg"
-        />
-        <Marker
-          icon={drapeau}
-          className="marker"
-          position={[departure[1], departure[0]]}
+      <div className="allmap">
+        <MapContainer
+          className="map"
+          center={[departure[1], departure[0]]}
+          zoom={7}
+          scrollWheelZoom={true}
         >
-          <Popup>Departure</Popup>
-        </Marker>
-        <Marker
-          icon={drapeau}
-          className="marker"
-          position={[arriver[1], arriver[0]]}
-        >
-          <Popup>Arrival</Popup>
-        </Marker>
+          <TileLayer
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg"
+          />
+          <Marker
+            icon={drapeau}
+            className="marker"
+            position={[departure[1], departure[0]]}
+          >
+            <Popup>Departure</Popup>
+          </Marker>
+          <Marker
+            icon={drapeau}
+            className="marker"
+            position={[arriver[1], arriver[0]]}
+          >
+            <Popup>Arrival</Popup>
+          </Marker>
 
-        {blackSmith ? (
-          blackSmith.map((forgeron) => (
-            <Marker
-              icon={ferCheval}
-              className="marker"
-              position={[
-                forgeron.geometry.coordinates[1],
-                forgeron.geometry.coordinates[0],
-              ]}
-            >
-              <Popup>Black-smith</Popup>
-            </Marker>
-          ))
-        ) : (
-          <p>Loading</p>
-        )}
+          {blackSmith ? (
+            blackSmith.map((forgeron) => (
+              <Marker
+                icon={ferCheval}
+                className="marker"
+                position={[
+                  forgeron.geometry.coordinates[1],
+                  forgeron.geometry.coordinates[0],
+                ]}
+              >
+                <Popup>Black-smith</Popup>
+              </Marker>
+            ))
+          ) : (
+            <p>Loading</p>
+          )}
 
-        {medic ? (
-          medic.map((priest) => (
-            <Marker
-              icon={medical}
-              className="marker"
-              position={[
-                priest.geometry.coordinates[1],
-                priest.geometry.coordinates[0],
-              ]}
-            >
-              <Popup>Resurection Point</Popup>
-            </Marker>
-          ))
-        ) : (
-          <p>Loading</p>
-        )}
+          {medic ? (
+            medic.map((priest) => (
+              <Marker
+                icon={medical}
+                className="marker"
+                position={[
+                  priest.geometry.coordinates[1],
+                  priest.geometry.coordinates[0],
+                ]}
+              >
+                <Popup>Resurection Point</Popup>
+              </Marker>
+            ))
+          ) : (
+            <p>Loading</p>
+          )}
 
-        {pont ? (
-          pont.map((priest) => (
-            <Marker
-              icon={river}
-              className="marker"
-              position={[
-                priest.geometry.coordinates[1],
-                priest.geometry.coordinates[0],
-              ]}
-            >
-              <Popup>Gué</Popup>
-            </Marker>
-          ))
-        ) : (
-          <p>Loading</p>
-        )}
+          {pont ? (
+            pont.map((priest) => (
+              <Marker
+                icon={river}
+                className="marker"
+                position={[
+                  priest.geometry.coordinates[1],
+                  priest.geometry.coordinates[0],
+                ]}
+              >
+                <Popup>Gué</Popup>
+              </Marker>
+            ))
+          ) : (
+            <p>Loading</p>
+          )}
 
-        {auberge ? (
-          auberge.map((priest) => (
-            <Marker
-              icon={bed}
-              className="marker"
-              position={[
-                priest.geometry.coordinates[1],
-                priest.geometry.coordinates[0],
-              ]}
-            >
-              <Popup>Inn</Popup>
-            </Marker>
-          ))
-        ) : (
-          <p>Loading</p>
-        )}
+          {auberge ? (
+            auberge.map((priest) => (
+              <Marker
+                icon={bed}
+                className="marker"
+                position={[
+                  priest.geometry.coordinates[1],
+                  priest.geometry.coordinates[0],
+                ]}
+              >
+                <Popup>Inn</Popup>
+              </Marker>
+            ))
+          ) : (
+            <p>Loading</p>
+          )}
 
-        {crime ? (
-          crime.map((priest) => (
-            <Circle
-              center={[
-                priest.geometry.coordinates[1],
-                priest.geometry.coordinates[0],
-              ]}
-              pathOptions={redOptions}
-              radius={500}
-            />
-          ))
-        ) : (
-          <p>Loading</p>
-        )}
-      </MapContainer>
+          {crime ? (
+            crime.map((priest) => (
+              <Circle
+                center={[
+                  priest.geometry.coordinates[1],
+                  priest.geometry.coordinates[0],
+                ]}
+                pathOptions={redOptions}
+                radius={500}
+              />
+            ))
+          ) : (
+            <p>Loading</p>
+          )}
+        </MapContainer>
+        <div className="button">
+          <button type="button" onClick={this.getAuberge}>
+            Inn
+          </button>
+          <button type="button" onClick={this.getPont}>
+            Gué
+          </button>
+          <button type="button" onClick={this.getMedic}>
+            Resurrection point
+          </button>
+          <button type="button" onClick={this.getCrime}>
+            Danger Zone
+          </button>
+          <button type="button" onClick={this.GetBlacksmith}>
+            Black-Smith
+          </button>
+        </div>
+      </div>
     );
   }
 }
