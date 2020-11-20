@@ -45,6 +45,8 @@ class MyTravel extends React.Component {
     this.getGeocodeArrival();
   }
 
+  HandleIcon() {}
+
   render() {
     const { startCity, arrival } = this.state;
     return (

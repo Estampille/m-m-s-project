@@ -3,6 +3,7 @@ import Header from "./Header";
 import "./UserReview.css";
 import "./HomePage.css";
 import Footer from "./Footer";
+import Form from "./Form";
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -32,7 +33,7 @@ class HomePage extends React.Component {
             bon fumet !
           </p>
         </div>
-
+        <Form />
         <Footer />
       </div>
     );
